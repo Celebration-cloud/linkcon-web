@@ -1,13 +1,12 @@
 /* eslint-disable prettier/prettier */
 
-import { Suspense } from "react";
-
 import { FilterDropdown } from "../../../components/FilterDropdown";
 import { FilterBar } from "../../../components/FilterBar";
 import { FilterDrawer } from "../../../components/FilterDrawer";
 
 import { getTemuCategories, getTemuProduct } from "@/libs/dataAction";
 import { SpinnerLoading } from "@/components/SpinnerLoading";
+import { Suspense } from "react";
 
 export async function generateMetadata({ params }) {
   const { checking: title } = await Promise.resolve(params);
@@ -28,6 +27,7 @@ export default async function Layout(props) {
 
   const temuProduct = await getTemuProduct();
   const product = temuProduct.data;
+
 
   return (
     <section className="space-y-4 sticky top-0">
@@ -59,7 +59,10 @@ export default async function Layout(props) {
           />
         </aside>
         <main className="col-span-1 sm:col-span-full md:col-span-8 w-full">
-          <Suspense fallback={<SpinnerLoading />}>{props.children}</Suspense>
+          <Suspense fallback={<SpinnerLoading />}>
+            {/* Render filtered products here if needed */}
+            {props.children}
+          </Suspense>
         </main>
       </div>
     </section>

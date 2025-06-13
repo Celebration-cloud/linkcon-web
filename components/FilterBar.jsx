@@ -20,10 +20,7 @@ export const FilterBar = ({ categories, product, title }) => {
   const [sortBy, setSortBy] = useState("latest");
   const [inStockOnly, setInStockOnly] = useState(false);
 
-  useEffect(() => {
-    setFilteredProducts(product);
-    setIsLoading(false);
-  }, [product]);
+
 
   useEffect(() => {
     handleApplyFilters();
@@ -32,8 +29,6 @@ export const FilterBar = ({ categories, product, title }) => {
   const handleApplyFilters = () => {
     const filtered = applyFiltersNow(product, searchQuery, selectedCategories, priceRange, inStockOnly, sortBy);
 
-    setFilteredProducts(filtered);
-    setIsFiltersOpen(false);
     console.log(filtered);
 
     // Dispatch the applyFilters action
@@ -48,7 +43,6 @@ export const FilterBar = ({ categories, product, title }) => {
     setSortBy("latest");
     setInStockOnly(false);
     setSearchQuery("");
-    setFilteredProducts(resetProducts);
     console.log(resetProducts);
 
     // Dispatch the resetFilters action
