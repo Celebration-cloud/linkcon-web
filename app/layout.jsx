@@ -3,7 +3,7 @@ import clsx from "clsx";
 import { ClerkProvider } from "@clerk/nextjs";
 
 import { Providers } from "./providers";
-
+import { Analytics } from "@vercel/analytics/next";
 import { siteConfig } from "@/config/site";
 import { fontSans } from "@/config/fonts";
 import { NavbarComponent } from "@/components/navbar";
@@ -61,7 +61,7 @@ export default async function RootLayout({ children }) {
         <body
           className={clsx(
             "min-h-screen font-sans antialiased",
-            fontSans.variable,
+            fontSans.variable
           )}
           suppressHydrationWarning={true}
         >
@@ -109,6 +109,7 @@ export default async function RootLayout({ children }) {
             suppressHydrationWarning
             src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
           />
+          <Analytics />
         </body>
       </html>
     </ClerkProvider>
