@@ -61,7 +61,7 @@ export default async function RootLayout({ children }) {
         <body
           className={clsx(
             "min-h-screen font-sans antialiased",
-            fontSans.variable
+            fontSans.variable,
           )}
           suppressHydrationWarning={true}
         >
@@ -105,8 +105,8 @@ export default async function RootLayout({ children }) {
           />
           <script
             defer
-            suppressHydrationWarning
             noModule
+            suppressHydrationWarning
             src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
           />
         </body>
@@ -115,4 +115,4 @@ export default async function RootLayout({ children }) {
   );
 }
 
-export const revalidate = 60 * 60 * 24;
+export const revalidate = 60;

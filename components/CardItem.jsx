@@ -9,7 +9,7 @@ import { useState } from "react";
 
 const defaultImageUrl = "/404 Error-rafiki.svg";
 
-export function CardItem({ onClick, getSeverity, product, width }) {
+export function CardItem({ onClick, product, width }) {
   const [imgSrc, setImgSrc] = useState(
     product.productImageUrl && product.productImageUrl.trim() !== ""
       ? product.productImageUrl

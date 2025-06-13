@@ -1,4 +1,5 @@
-"use client"
+/* eslint-disable prettier/prettier */
+"use client";
 import { Spinner } from "@heroui/spinner";
 
 export default function Loading() {

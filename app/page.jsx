@@ -11,9 +11,6 @@ export default async function Home() {
   const temuProductResponse = await getTemuProduct();
   const temuProduct = temuProductResponse.data; // Ensure temuProduct is an array
 
-  // console.log(products);
-  console.log(`temu product:`, temuProduct);
-
   return (
     <section className="h-fit relative">
       <BagCarousel />
@@ -31,4 +28,4 @@ export default async function Home() {
 }
 
 export const revalidate = false;
-export const cache = "force-cache";
+export const fetchCache = "force-cache";

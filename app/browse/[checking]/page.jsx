@@ -1,7 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { Suspense } from "react";
 
-import { SpinnerLoading } from "../../../components/SpinnerLoading";
 // Import the client component you just created:
 import { PaginatedSearchResults } from "../../../components/PaginatedSearchResults";
 

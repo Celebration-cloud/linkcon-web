@@ -129,9 +129,9 @@ export default function refund() {
           to appear on your statement.
         </p>
         <p>
-          The issuing bank manages the cardholder's account. We are not
+          The issuing bank manages the cardholder&apos;s account. We are not
           responsible for any delays in the amount being credited to a bank
-          account. The time taken for the refund to appear on the cardholder's
+          account. The time taken for the refund to appear on the cardholder&apos;s
           account may vary depending on the bank.
         </p>
       </div>

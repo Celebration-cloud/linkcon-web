@@ -8,7 +8,7 @@ import { PaginatedSearchResults } from "./PaginatedSearchResults";
 
 export const PaginatedSearchResultsClient = ({ title }) => {
   const products = useSelector((state) => state.filter.filteredProducts);
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage] = useState(1);
 
   return (
     <PaginatedSearchResults

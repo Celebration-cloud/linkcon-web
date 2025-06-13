@@ -1,26 +1,4 @@
-import * as React from "react";
-
-import { IconComponent, IconSvgProps } from "@/types";
-
-declare global {
-  namespace JSX {
-    interface IntrinsicElements {
-      "ion-icon": React.DetailedHTMLProps<
-        React.HTMLAttributes<HTMLElement>,
-        HTMLElement
-      > & {
-        name?: string; // Add other ion-icon specific attributes here if needed
-      };
-    }
-  }
-}
-
-export const Logo: React.FC<IconSvgProps> = ({
-  size = 36,
-  width,
-  height,
-  ...props
-}) => (
+export const Logo = ({ size = 36, width, height, ...props }) => (
   <svg
     fill="none"
     height={size || height}
@@ -37,24 +15,19 @@ export const Logo: React.FC<IconSvgProps> = ({
   </svg>
 );
 
-export const WhatsAppIcon: IconComponent = () => {
+export const WhatsAppIcon = () => {
   return <ion-icon suppressHydrationWarning name="logo-whatsapp" />;
 };
 
-export const ShareIcon: IconComponent = () => {
+export const ShareIcon = () => {
   return <ion-icon suppressHydrationWarning name="share-outline" />;
 };
 
-export const CallIcon: IconComponent = () => {
+export const CallIcon = () => {
   return <ion-icon suppressHydrationWarning name="call-outline" />;
 };
 
-export const DiscordIcon: React.FC<IconSvgProps> = ({
-  size = 24,
-  width,
-  height,
-  ...props
-}) => {
+export const DiscordIcon = ({ size = 24, width, height, ...props }) => {
   return (
     <svg
       height={size || height}
@@ -70,12 +43,7 @@ export const DiscordIcon: React.FC<IconSvgProps> = ({
   );
 };
 
-export const TwitterIcon: React.FC<IconSvgProps> = ({
-  size = 24,
-  width,
-  height,
-  ...props
-}) => {
+export const TwitterIcon = ({ size = 24, width, height, ...props }) => {
   return (
     <svg
       height={size || height}
@@ -91,12 +59,7 @@ export const TwitterIcon: React.FC<IconSvgProps> = ({
   );
 };
 
-export const GithubIcon: React.FC<IconSvgProps> = ({
-  size = 24,
-  width,
-  height,
-  ...props
-}) => {
+export const GithubIcon = ({ size = 24, width, height, ...props }) => {
   return (
     <svg
       height={size || height}
@@ -114,12 +77,7 @@ export const GithubIcon: React.FC<IconSvgProps> = ({
   );
 };
 
-export const MoonFilledIcon = ({
-  size = 24,
-  width,
-  height,
-  ...props
-}: IconSvgProps) => (
+export const MoonFilledIcon = ({ size = 24, width, height, ...props }) => (
   <svg
     aria-hidden="true"
     focusable="false"
@@ -136,12 +94,7 @@ export const MoonFilledIcon = ({
   </svg>
 );
 
-export const SunFilledIcon = ({
-  size = 24,
-  width,
-  height,
-  ...props
-}: IconSvgProps) => (
+export const SunFilledIcon = ({ size = 24, width, height, ...props }) => (
   <svg
     aria-hidden="true"
     focusable="false"
@@ -158,12 +111,7 @@ export const SunFilledIcon = ({
   </svg>
 );
 
-export const HeartFilledIcon = ({
-  size = 24,
-  width,
-  height,
-  ...props
-}: IconSvgProps) => (
+export const HeartFilledIcon = ({ size = 24, width, height, ...props }) => (
   <svg
     aria-hidden="true"
     focusable="false"
@@ -183,7 +131,7 @@ export const HeartFilledIcon = ({
   </svg>
 );
 
-export const SearchIcon = (props: IconSvgProps) => (
+export const SearchIcon = (props) => (
   <svg
     aria-hidden="true"
     fill="none"

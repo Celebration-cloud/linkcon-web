@@ -5,8 +5,9 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { useParams, useSearchParams, useRouter } from "next/navigation";
-import { SearchResult } from "./SearchResult";
 import { Pagination } from "@heroui/pagination";
+
+import { SearchResult } from "./SearchResult";
 
 export const PaginatedSearchResults = () => {
   const { checking: title } = useParams();

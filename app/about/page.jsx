@@ -61,7 +61,7 @@ export default function Page() {
           Nestled within the industrious landscape of Uttar Pradesh State
           Industrial Development Corporation, Ghaziabad, Uttar Pradesh, our
           journey began with a vision to blend tradition with modernity,
-          offering products that resonate with our customers' diverse needs.
+          offering products that resonate with our customers&apos; diverse needs.
         </li>
         <li>
           At Aman Enterprises, we take pride in our extensive range of
@@ -88,7 +88,7 @@ export default function Page() {
           innovate and improve our products and services.
         </li>
         <li>
-          Whether you're an individual looking for eco-friendly bags or an
+          Whether you&apos;re an individual looking for eco-friendly bags or an
           organization in need of bulk purchases, Aman Enterprises is your
           reliable partner every step of the way.
         </li>

@@ -12,7 +12,7 @@ import {
 
 export const ContactTable = () => {
   return (
-    <Table aria-label="Company Details Table" selectionMode="single" className="py-3">
+    <Table aria-label="Company Details Table" className="py-3" selectionMode="single">
       <TableHeader>
         <TableColumn className="text-xl font-bold">Detail</TableColumn>
         <TableColumn className="text-xl font-bold">Information</TableColumn>

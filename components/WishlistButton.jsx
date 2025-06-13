@@ -24,7 +24,6 @@ export function WishlistButton({ product }) {
   const isWishlisted = wishlistItems.some(
     (item) => item.productId === product.productId
   );
-  console.log("wishlistitem: ", wishlistItems);
 
   useEffect(() => {
     if (!userId) return; // Don't fetch if no user is signed in

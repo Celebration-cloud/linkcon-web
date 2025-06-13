@@ -27,8 +27,14 @@ export const SpeedDial = () => {
           title: document.title,
           url: shareUrl,
         });
-      } catch (err) {
+      } catch (error) {
         // User cancelled or share failed
+        addToast({
+          title: "Share failed",
+          description: error.message || "An error occurred while trying to share.",
+          status: "error",
+          duration: 2500,
+        });
       }
     } else {
       // Fallback: copy to clipboard

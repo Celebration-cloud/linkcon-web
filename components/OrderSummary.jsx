@@ -35,7 +35,7 @@ export const OrderSummary = ({ cartItems = [] }) => {
         <TableBody>
           {cartItems.length === 0 ? (
             <TableRow>
-              <TableCell colSpan={4} className="text-center text-gray-400">
+              <TableCell className="text-center text-gray-400" colSpan={4}>
                 No items in cart.
               </TableCell>
             </TableRow>

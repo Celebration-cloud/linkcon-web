@@ -11,9 +11,6 @@ import { applyFiltersNow, resetFiltersNow } from "../utils/filterUtils";
 
 export const FilterBar = ({ categories, product, title }) => {
   const dispatch = useDispatch();
-  const [filteredProducts, setFilteredProducts] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [isFiltersOpen, setIsFiltersOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
 
   // Filter states
