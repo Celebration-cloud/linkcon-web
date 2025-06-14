@@ -1,9 +1,12 @@
 // import Image from "next/image";
 
+import { Suspense } from "react";
+
 import { BagCarousel } from "@/components/BagCarousel";
 import { getTemuCategories, getTemuProduct } from "@/libs/dataAction";
 import { CardComponent } from "@/components/CardComponent";
 import { ItemCarousel } from "@/components/ItemCarousel";
+import { SpinnerLoading } from "@/components/SpinnerLoading";
 
 export default async function Home() {
   // const products = await getAllProducts();
@@ -16,9 +19,9 @@ export default async function Home() {
       <BagCarousel />
       <section className="my-10">
         <p className="text-xl font-bold">Our Most Popular Products</p>
-        {/* <Suspense  fallback={<SpinnerLoading />}> */}
-        <ItemCarousel sampleProducts={temuProduct} />
-        {/* </Suspense> */}
+        <Suspense fallback={<SpinnerLoading />}>
+          <ItemCarousel sampleProducts={temuProduct} />
+        </Suspense>
       </section>
       <section className="flex flex-wrap justify-around gap-5 py-5">
         <CardComponent categories={categories} />

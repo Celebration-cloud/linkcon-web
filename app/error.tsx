@@ -3,16 +3,32 @@
 import { useEffect } from "react";
 import Link from "next/link";
 
-export default function Error({ error }: { error: Error; reset: () => void }) {
+/**
+ * Global Error Boundary Component
+ *
+ * This component is used as a fallback UI when an unhandled error occurs in the app.
+ * It displays a user-friendly message and logs the error to the console.
+ *
+ * @param {Object} props - Component props
+ * @param {Error} props.error - The thrown error object
+ * @param {Function} props.reset - A function to attempt resetting the error boundary
+ */
+export default function Error({
+  error,
+  reset,
+}: {
+  error: Error;
+  reset: () => void;
+}) {
+  // Log the error (you could also send it to an external service like Sentry)
   useEffect(() => {
-    // Log the error to an error reporting service
-    /* eslint-disable no-console */
-    console.error(error);
+    console.error("Global error caught:", error);
   }, [error]);
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100">
-      <div className="bg-white shadow-xl rounded-2xl p-10 flex flex-col items-center max-w-md">
+    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 px-4">
+      <div className="bg-white shadow-xl rounded-2xl p-8 md:p-10 flex flex-col items-center max-w-md text-center">
+        {/* Error Icon */}
         <svg
           className="w-16 h-16 text-indigo-500 mb-4"
           fill="none"
@@ -26,19 +42,21 @@ export default function Error({ error }: { error: Error; reset: () => void }) {
             strokeLinejoin="round"
           />
         </svg>
-        <h1 className="text-4xl font-bold text-gray-800 mb-2">
-          {/* {statusCode || 404} */}
-          404
-        </h1>
+
+        {/* Error Title */}
+        <h1 className="text-4xl font-bold text-gray-800 mb-2">Oops!</h1>
+
+        {/* Error Description */}
         <p className="text-lg text-gray-600 mb-6">
-          {/* {statusCode
-            ? `An error ${statusCode} occurred on server`
-            : "Sorry, the page you are looking for does not exist."} */}
-          Sorry, the page you are looking for does not exist.
+          Sorry, something went wrong. The page you&apos;re looking for
+          isn&apos;t available right now.
         </p>
+
+        {/* Home Link */}
         <Link
-          className="inline-block px-6 py-2 bg-indigo-600 text-white rounded-lg shadow hover:bg-indigo-700 transition"
+          className="inline-block px-6 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg shadow transition duration-200"
           href="/"
+          onClick={() => reset()}
         >
           Go Home
         </Link>
