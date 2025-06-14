@@ -19,9 +19,9 @@ export const NavDropdown = ({ categories }) => {
 
   const handleRoute = (value) => {
     const selected = categories.find(
-      (item) => item.categoryId.toString() === value,
+      (item) => item.categoryName === value.currentKey,
     );
-
+    
     if (selected) {
       router.push(`/browse/${selected.categoryName}`, {
         title: selected.categoryName,
@@ -70,8 +70,8 @@ export const NavDropdown = ({ categories }) => {
             >
               {categories.map((item) => (
                 <ListboxItem
-                  key={item.categoryId}
-                  value={item.categoryId.toString()}
+                  key={item.categoryName}
+                  value={item.categoryName}
                 >
                   {item.categoryName}
                 </ListboxItem>
