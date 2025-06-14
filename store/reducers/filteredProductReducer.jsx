@@ -1,7 +1,8 @@
 /* eslint-disable prettier/prettier */
 
-import { APPLY_FILTERS, RESET_FILTERS } from "../ActionTypes";
+// store/reducers/filtersReducer.js
 
+import { APPLY_FILTERS, RESET_FILTERS } from "../ActionTypes";
 
 const initialState = {
   filteredProducts: [],
@@ -10,23 +11,20 @@ const initialState = {
   searchQuery: "",
 };
 
-export const filteredProductReducer = (
-  state = initialState,
-  { type, payload }
-) => {
-  switch (type) {
+export const filteredProductReducer = (state = initialState, action) => {
+  switch (action.type) {
     case APPLY_FILTERS:
       return {
         ...state,
-        filteredProducts: payload.filteredProducts,
+        filteredProducts: action.payload.filteredProducts,
         isLoading: false,
         isFiltersOpen: false,
-        searchQuery: payload.searchQuery
+        searchQuery: action.payload.searchQuery,
       };
     case RESET_FILTERS:
       return {
         ...state,
-        filteredProducts: payload.products,
+        filteredProducts: action.payload.products,
         isLoading: false,
         isFiltersOpen: false,
         searchQuery: "",

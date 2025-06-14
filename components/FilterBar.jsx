@@ -16,22 +16,25 @@ export const FilterBar = ({ categories, product, title }) => {
   // Filter states
   const titles = title === "shopping" ? [] : title;
   const [selectedCategories, setSelectedCategories] = useState(titles);
-  const [priceRange, setPriceRange] = useState([0, 1000]);
+  const [priceRange, setPriceRange] = useState([0, 10000]);
   const [sortBy, setSortBy] = useState("latest");
   const [inStockOnly, setInStockOnly] = useState(false);
-
-
 
   useEffect(() => {
     handleApplyFilters();
   }, [sortBy]);
 
   const handleApplyFilters = () => {
-    const filtered = applyFiltersNow(product, searchQuery, selectedCategories, priceRange, inStockOnly, sortBy);
+    const filtered = applyFiltersNow(
+      product,
+      searchQuery,
+      selectedCategories,
+      priceRange,
+      inStockOnly,
+      sortBy
+    );
 
-    console.log(filtered);
-
-    // Dispatch the applyFilters action
+    console.log(filtered, "sortBy:", sortBy);
     dispatch(applyFilters(filtered, searchQuery));
   };
 
@@ -39,18 +42,18 @@ export const FilterBar = ({ categories, product, title }) => {
     const resetProducts = resetFiltersNow(product);
 
     setSelectedCategories([]);
-    setPriceRange([0, 1000]);
+    setPriceRange([0, 10000]);
     setSortBy("latest");
     setInStockOnly(false);
     setSearchQuery("");
     console.log(resetProducts);
 
-    // Dispatch the resetFilters action
     dispatch(resetFilters(resetProducts));
   };
 
   return (
     <div className="">
+      {/* Header */}
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-xl font-bold">Filters</h2>
         <div className="flex gap-2">
@@ -69,11 +72,13 @@ export const FilterBar = ({ categories, product, title }) => {
         <Slider
           aria-label="Price Range"
           className="w-full"
-          max={1000}
-          min={0}
+          defaultValue={[0, 10000]}
+          formatOptions={{ style: "currency", currency: "USD" }}
+          maxValue={10000}
+          minValue={0}
           step={10}
           value={priceRange}
-          onChange={(value) => setPriceRange(value)}
+          onChange={setPriceRange}
         />
         <div className="flex justify-between text-sm mt-2 text-gray-600">
           <span>${priceRange[0]}</span>
@@ -88,11 +93,10 @@ export const FilterBar = ({ categories, product, title }) => {
           {categories.map((category, idx) => (
             <Checkbox
               key={idx}
-              checked={selectedCategories.includes(category.categoryName)}
               className="flex items-center gap-2 text-gray-700"
-              label={category.categoryName}
-              onChange={(e) => {
-                if (e.target.checked) {
+              isSelected={selectedCategories.includes(category.categoryName)}
+              onValueChange={(isSelected) => {
+                if (isSelected) {
                   setSelectedCategories([
                     ...selectedCategories,
                     category.categoryName,
@@ -116,10 +120,9 @@ export const FilterBar = ({ categories, product, title }) => {
       <div className="mb-8">
         <h3 className="font-medium mb-4">Availability</h3>
         <Checkbox
-          checked={inStockOnly}
           className="flex items-center gap-2 text-gray-700"
-          label="In Stock Only"
-          onChange={(e) => setInStockOnly(e.target.checked)}
+          isSelected={inStockOnly}
+          onValueChange={setInStockOnly}
         >
           In Stock Only
         </Checkbox>
@@ -131,17 +134,24 @@ export const FilterBar = ({ categories, product, title }) => {
         <Select
           className="w-full"
           label="Sort By"
-          value={sortBy}
-          onChange={(e) => setSortBy(e.target.value)}
+          placeholder="Select sorting"
+          selectedKeys={new Set([sortBy])}
+          variant="bordered"
+          onSelectionChange={(keySet) => {
+            const selected = Array.from(keySet)[0];
+
+            if (selected) setSortBy(selected);
+          }}
         >
-          <SelectItem value="latest">Latest Arrivals</SelectItem>
-          <SelectItem value="price-low-high">Price: Low to High</SelectItem>
-          <SelectItem value="price-high-low">Price: High to Low</SelectItem>
-          <SelectItem value="rating-high-low">Rating: High to Low</SelectItem>
-          <SelectItem value="most-reviews">Most Reviews</SelectItem>
+          <SelectItem key="latest">Latest Arrivals</SelectItem>
+          <SelectItem key="price-low-high">Price: Low to High</SelectItem>
+          <SelectItem key="price-high-low">Price: High to Low</SelectItem>
+          <SelectItem key="rating-high-low">Rating: High to Low</SelectItem>
+          <SelectItem key="most-reviews">Most Reviews</SelectItem>
         </Select>
       </div>
 
+      {/* Apply Filters */}
       <Button
         className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 rounded-lg"
         onPress={handleApplyFilters}
