@@ -9,8 +9,8 @@ import { SpinnerLoading } from "@/components/SpinnerLoading";
 import { getTemuCategories, getTemuProduct } from "@/libs/dataAction";
 
 export async function generateMetadata({ params }) {
-  const rawTitle = params.checking || "";
-  const decodedTitle = decodeURIComponent(rawTitle.replace(/%20/g, " "));
+  const {checking} = await Promise.resolve(params) || "";
+  const decodedTitle = decodeURIComponent(checking.replace(/%20/g, " "));
 
   const capitalizeWords = (str) =>
     str.replace(/\b\w/g, (char) => char.toUpperCase());
@@ -25,11 +25,11 @@ export async function generateMetadata({ params }) {
     openGraph: {
       title: baseTitle,
       description,
-      url: `/category/${rawTitle}`,
+      url: `/category/${checking}`,
       siteName: "Your Store Name",
       images: [
         {
-          url: `https://yourdomain.com/og-images/category-${rawTitle}.jpg`,
+          url: `https://yourdomain.com/og-images/category-${checking}.jpg`,
           width: 800,
           height: 600,
           alt: categoryName,
@@ -41,7 +41,7 @@ export async function generateMetadata({ params }) {
       card: "summary_large_image",
       title: baseTitle,
       description,
-      images: [`https://yourdomain.com/og-images/category-${rawTitle}.jpg`],
+      images: [`https://yourdomain.com/og-images/category-${checking}.jpg`],
     },
     robots: {
       index: true,
@@ -51,8 +51,8 @@ export async function generateMetadata({ params }) {
 }
 
 export default async function Layout({ children, params }) {
-  const rawTitle = params.checking || "";
-  const categoryId = decodeURIComponent(rawTitle.replace(/%20/g, " "));
+  const { checking } = (await Promise.resolve(params)) || "";
+  const categoryId = decodeURIComponent(checking.replace(/%20/g, " "));
 
   let categories = [];
   let products = [];
