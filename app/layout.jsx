@@ -117,14 +117,14 @@ export default async function RootLayout({ children }) {
 
               <div
                 aria-label="Cart Drawer"
-                className="fixed bottom-1/2 left-1 z-20 hidden sm:flex"
+                className="fixed bottom-1/2 left-1 z-20 flex sm:hidden"
               >
                 <CartDrawer />
               </div>
 
               <div
                 aria-label="Theme Switcher"
-                className="fixed bottom-16 right-5 bg-gray-200 dark:bg-gray-700 p-2 z-20 rounded-md hidden sm:flex"
+                className="fixed bottom-16 right-5 bg-gray-200 dark:bg-gray-700 p-2 z-20 rounded-md flex sm:hidden"
               >
                 <ThemeSwitch />
               </div>

@@ -171,9 +171,13 @@ export const NavbarComponent = ({ categories, temuProducts }) => {
         {/* Mobile user actions */}
         <NavbarUserActions className="flex flex-col gap-2 mt-4 sm:hidden" />
         {/* Mobile cart */}
-        <div className="block mt-4">
-          <CartDrawer />
-        </div>
+        {/* Theme switch in mobile menu */}
+        <NavbarMenuItem className="mt-4 absolute bottom-0 left-0 flex items-center justify-between w-full border-t-1 p-4 bg-white dark:bg-gray-800">
+          <div className="block mt-4">
+            <CartDrawer />
+          </div>
+          <ThemeSwitch />
+        </NavbarMenuItem>
       </NavbarMenu>
     </Navbar>
   );
