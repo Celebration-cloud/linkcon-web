@@ -63,7 +63,7 @@ export const NavDropdown = ({ categories }) => {
               }}
               selectionMode="single"
               virtualization={{
-                maxListboxHeight: 400,
+                maxListboxHeight: 200,
                 itemHeight: 40,
               }}
               onSelectionChange={handleRoute}
