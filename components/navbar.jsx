@@ -78,7 +78,7 @@ export const NavbarComponent = ({ categories, temuProducts }) => {
             <Image
               alt="HeroUI hero Image"
               height={200}
-              src="https://heroui.com/images/hero-card-complete.jpeg"
+              src="/favicon.ico"
               width={50}
             />
           </div>

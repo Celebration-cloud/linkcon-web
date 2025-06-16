@@ -86,11 +86,11 @@ export const ProductActions = ({ temuProduct }) => {
       {/* Show total and average rating */}
       <div className="mb-2">
         <span className="text-sm text-gray-500">
-          Total Rating: {totalRating} | Average: {averageRating.toFixed(1)}
+          Total Rating: {productReviews.length} | Average: {averageRating.toFixed(1)}
         </span>
       </div>
+      <Rating cancel={false} value={averageRating} />
       <SignedIn>
-        <Rating cancel={false} value={averageRating} />
         <div className="flex items-center gap-5">
           <IncrementButton setValue={setQuantity} value={quantity} />
           <WishlistButton product={temuProduct} />
