@@ -47,7 +47,7 @@ export default function WishlistIndicator() {
       isIconOnly
       aria-label="Wishlist"
       className="bg-foreground-300 relative"
-      size="lg"
+      size="md"
       variant="bordered"
       onPress={() => router.push("/wishlist")}
     >
