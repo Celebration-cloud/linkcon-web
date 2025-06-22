@@ -9,7 +9,7 @@ import {
 import { Button } from "@heroui/button";
 
 export const NavbarUserActions = ({ className = "" }) => (
-  <div className={`flex items-center`}>
+  <div className={`flex items-center -mr-4`}>
     <SignedIn>
       <UserButton afterSignOutUrl="/" />
     </SignedIn>
