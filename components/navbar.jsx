@@ -98,7 +98,12 @@ export const NavbarComponent = ({ categories, temuProducts }) => {
           <ThemeSwitch />
         </div>
         {/* Search button (mobile) */}
-        <Button isIconOnly className="flex" onPress={handleOpen}>
+        <Button
+          isIconOnly
+          className="flex -mr-1.5"
+          size="sm"
+          onPress={handleOpen}
+        >
           <ion-icon suppressHydrationWarning name="search-outline" />
         </Button>
         {/* Shop buttons */}
@@ -113,6 +118,8 @@ export const NavbarComponent = ({ categories, temuProducts }) => {
           isIconOnly
           aria-label="shopIcon"
           className="bg-gray-500 sm:hidden"
+          size="sm"
+          variant="light"
           onPress={handleShop}
         >
           <ion-icon

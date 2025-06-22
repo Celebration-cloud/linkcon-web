@@ -34,8 +34,8 @@ export default function WishlistIndicator() {
       <Button
         isIconOnly
         aria-label="Wishlist"
-        className="bg-foreground-300 relative"
-        size="md"
+        className="bg-foreground-300 relative -ml-1.5"
+        size="sm"
         variant="bordered"
         onPress={() => router.push("/wishlist")}
       >
