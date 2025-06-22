@@ -19,7 +19,7 @@ import { useUser } from "@clerk/nextjs";
 import { CartCard } from "@/components/CartCard";
 import { fetchCart } from "@/store/actions/cartActions";
 
-export const CartDrawer = () => {
+export const CartDrawer = ({size="md"}) => {
   const { isOpen, onOpen, onClose, onOpenChange } = useDisclosure();
   const router = useRouter();
   const dispatch = useDispatch();
@@ -50,7 +50,7 @@ export const CartDrawer = () => {
             isIconOnly
             aria-label="Cart"
             className="bg-foreground-300 relative"
-            size="md"
+            size={size}
             variant="bordered"
             onPress={onOpen}
           >

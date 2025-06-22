@@ -130,7 +130,7 @@ export const NavbarComponent = ({ categories, temuProducts }) => {
         </Button>
         {/* Cart always visible */}
         <div className="hidden sm:block">
-          <CartDrawer />
+          <CartDrawer size="sm" />
         </div>
         <div className="hidden">
           <SearchInput
