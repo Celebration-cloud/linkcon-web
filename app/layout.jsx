@@ -109,7 +109,7 @@ export default async function RootLayout({ children }) {
 
               {/* Floating UI Components */}
               <div
-                className="fixed bottom-5 left-1/2 transform -translate-x-1/2 z-20 sm:hidden"
+                className="fixed bottom-5 left-1/2 transform -translate-x-1/2 z-20"
                 role="button"
               >
                 <SpeedDial />
