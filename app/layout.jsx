@@ -65,6 +65,10 @@ export default async function RootLayout({ children }) {
         <head>
           <meta content="width=device-width, initial-scale=1" name="viewport" />
           <meta charSet="UTF-8" />
+          <meta
+            content="ca-pub-7517532434811402"
+            name="google-adsense-account"
+          />
           <title>{metadata.title.default}</title>
           <link href={metadata.icons.icon} rel="icon" />
           <meta content={metadata.description} name="description" />
