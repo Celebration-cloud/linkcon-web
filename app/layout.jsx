@@ -59,13 +59,8 @@ export default async function RootLayout({ children }) {
         <head>
           <meta content="width=device-width, initial-scale=1" name="viewport" />
           <meta charSet="UTF-8" />
-          <meta
-            content="ca-pub-7517532434811402"
-            name="google-adsense-account"
-          />
           <link href={metadata.icons.icon} rel="icon" />
           <meta content={metadata.description} name="description" />
-
           {/* Theme Color Meta Tags */}
           {viewport.themeColor.map(({ media, color }) => (
             <meta
@@ -75,20 +70,14 @@ export default async function RootLayout({ children }) {
               name="theme-color"
             />
           ))}
-
           {/* Google AdSense Script */}
-          <script
-            async
-            crossOrigin="anonymous"
-            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7517532434811402"
-          />
-          {/* <Script
+          <Script
             async
             crossOrigin="anonymous"
             id="adsense-script"
             src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7517532434811402"
             strategy="afterInteractive"
-          /> */}
+          />
         </head>
 
         <body
