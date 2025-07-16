@@ -62,6 +62,10 @@ export default async function RootLayout({ children }) {
           <link href={metadata.icons.icon} rel="icon" />
           <meta content={metadata.description} name="description" />
           {/* Theme Color Meta Tags */}
+          <meta
+            content="ca-pub-7517532434811402"
+            name="google-adsense-account"
+          />
           {viewport.themeColor.map(({ media, color }) => (
             <meta
               key={media}
