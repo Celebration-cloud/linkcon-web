@@ -2,7 +2,7 @@ import "@/styles/globals.css";
 import clsx from "clsx";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Analytics } from "@vercel/analytics/next";
-// import Script from "next/script";
+import Script from "next/script";
 
 import { Providers } from "./providers";
 
