@@ -2,7 +2,7 @@ import "@/styles/globals.css";
 import clsx from "clsx";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Analytics } from "@vercel/analytics/next";
-import Script from "next/script";
+// import Script from "next/script";
 
 import { Providers } from "./providers";
 
@@ -77,13 +77,18 @@ export default async function RootLayout({ children }) {
           ))}
 
           {/* Google AdSense Script */}
-          <Script
+          <script
+            async
+            crossOrigin="anonymous"
+            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7517532434811402"
+          />
+          {/* <Script
             async
             crossOrigin="anonymous"
             id="adsense-script"
             src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7517532434811402"
             strategy="afterInteractive"
-          />
+          /> */}
         </head>
 
         <body
