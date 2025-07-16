@@ -12,12 +12,11 @@ import { NavbarComponent } from "@/components/navbar";
 import { FooterComponent } from "@/components/footerComponent";
 import { PaymentFooter } from "@/components/paymentFooter";
 import { SpeedDial } from "@/components/SpeedDial";
+import "primereact/resources/themes/lara-light-cyan/theme.css";
 import { ThemeSwitch } from "@/components/theme-switch";
 import { CartDrawer } from "@/components/CartDrawer";
-import CookiesAlert from "@/components/CookiesAlert";
 import { getTemuCategories, getTemuProduct } from "@/libs/dataAction";
-
-import "primereact/resources/themes/lara-light-cyan/theme.css";
+import CookiesAlert from "@/components/CookiesAlert";
 
 /**
  * Metadata configuration for the root layout.
@@ -45,8 +44,16 @@ export const viewport = {
 
 /**
  * RootLayout Component
+ *
+ * The main layout wrapper for the application. It wraps all pages with global providers,
+ * layout elements like navbar/footer, and UI components like cart drawer and speed dial.
+ *
+ * @param {Object} props - Component props
+ * @param {React.ReactNode} props.children - Nested page content
+ * @returns {JSX.Element} Rendered layout
  */
 export default async function RootLayout({ children }) {
+  // Fetch categories and products server-side
   const temuCategories = await getTemuCategories();
   const categories = temuCategories.data;
 
@@ -59,13 +66,11 @@ export default async function RootLayout({ children }) {
         <head>
           <meta content="width=device-width, initial-scale=1" name="viewport" />
           <meta charSet="UTF-8" />
+          <title>{metadata.title.default}</title>
           <link href={metadata.icons.icon} rel="icon" />
           <meta content={metadata.description} name="description" />
+
           {/* Theme Color Meta Tags */}
-          <meta
-            content="ca-pub-7517532434811402"
-            name="google-adsense-account"
-          />
           {viewport.themeColor.map(({ media, color }) => (
             <meta
               key={media}
@@ -75,7 +80,6 @@ export default async function RootLayout({ children }) {
             />
           ))}
         </head>
-
         <body
           className={clsx(
             "min-h-screen font-sans antialiased bg-white text-gray-900 dark:bg-gray-900 dark:text-white",
@@ -84,18 +88,21 @@ export default async function RootLayout({ children }) {
         >
           <Providers themeProps={{ attribute: "class", defaultTheme: "light" }}>
             <div className="relative mx-auto max-w-7xl min-h-screen flex flex-col gap-5">
-              {/* Navigation */}
+              {/* Navigation Bar */}
               <NavbarComponent
                 categories={categories}
                 temuProducts={temuProduct}
               />
 
-              {/* Main Content */}
-              <main className="container mx-auto max-w-7xl px-6 flex-grow">
+              {/* Main Content Area */}
+              <main
+                className="container mx-auto max-w-7xl px-6 flex-grow"
+                role="main"
+              >
                 {children}
               </main>
 
-              {/* Footer */}
+              {/* Footer Section */}
               <footer className="w-full">
                 <PaymentFooter />
                 <FooterComponent />
@@ -124,11 +131,11 @@ export default async function RootLayout({ children }) {
               </div>
             </div>
 
-            {/* Cookie Consent */}
+            {/* Cookie Consent Banner */}
             <CookiesAlert />
           </Providers>
 
-          {/* Google AdSense Script */}
+          {/* ✅ Google AdSense Script (must be in body for app directory) */}
           <Script
             async
             crossOrigin="anonymous"
@@ -137,7 +144,7 @@ export default async function RootLayout({ children }) {
             strategy="afterInteractive"
           />
 
-          {/* Ionicons Scripts */}
+          {/* Ionicons */}
           <Script
             defer
             src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
