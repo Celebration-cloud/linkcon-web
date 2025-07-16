@@ -79,6 +79,14 @@ export default async function RootLayout({ children }) {
               name="theme-color"
             />
           ))}
+          {/* ✅ Google AdSense Script (must be in body for app directory) */}
+          <Script
+            async
+            crossOrigin="anonymous"
+            id="adsense-script"
+            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7517532434811402"
+            strategy="afterInteractive"
+          />
         </head>
         <body
           className={clsx(
@@ -134,15 +142,6 @@ export default async function RootLayout({ children }) {
             {/* Cookie Consent Banner */}
             <CookiesAlert />
           </Providers>
-
-          {/* ✅ Google AdSense Script (must be in body for app directory) */}
-          <Script
-            async
-            crossOrigin="anonymous"
-            id="adsense-script"
-            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7517532434811402"
-            strategy="afterInteractive"
-          />
 
           {/* Ionicons */}
           <Script
