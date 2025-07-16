@@ -1,12 +1,8 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-"use client";
-
 import "@/styles/globals.css";
 import clsx from "clsx";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Analytics } from "@vercel/analytics/next";
 import Script from "next/script";
-import React, { useEffect, useState } from "react";
 
 import { Providers } from "./providers";
 
@@ -23,6 +19,9 @@ import { getTemuCategories, getTemuProduct } from "@/libs/dataAction";
 
 import "primereact/resources/themes/lara-light-cyan/theme.css";
 
+/**
+ * Metadata configuration for the root layout.
+ */
 export const metadata = {
   title: {
     default: siteConfig.name,
@@ -34,6 +33,9 @@ export const metadata = {
   },
 };
 
+/**
+ * Viewport configuration for responsive design and theme color settings.
+ */
 export const viewport = {
   themeColor: [
     { media: "(prefers-color-scheme: light)", color: "white" },
@@ -41,27 +43,15 @@ export const viewport = {
   ],
 };
 
-export default function RootLayout({ children }) {
-  const [categories, setCategories] = useState([]);
-  const [temuProduct, setTemuProduct] = useState([]);
+/**
+ * RootLayout Component
+ */
+export default async function RootLayout({ children }) {
+  const temuCategories = await getTemuCategories();
+  const categories = temuCategories.data;
 
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const temuCategories = await getTemuCategories();
-
-        setCategories(temuCategories.data || []);
-        const temuProductResponse = await getTemuProduct();
-
-        setTemuProduct(temuProductResponse.data || []);
-      } catch (error) {
-        // Optionally handle error
-        setCategories([]);
-        setTemuProduct([]);
-      }
-    }
-    fetchData();
-  }, []);
+  const temuProductResponse = await getTemuProduct();
+  const temuProduct = temuProductResponse.data || [];
 
   return (
     <ClerkProvider>
@@ -71,17 +61,11 @@ export default function RootLayout({ children }) {
           <meta charSet="UTF-8" />
           <link href={metadata.icons.icon} rel="icon" />
           <meta content={metadata.description} name="description" />
-
-          {/* Google AdSense Verification Meta Tag */}
+          {/* Theme Color Meta Tags */}
           <meta
             content="ca-pub-7517532434811402"
             name="google-adsense-account"
           />
-
-          {/* Optional: Google Site Verification Token */}
-          {/* <meta name="google-site-verification" content="YOUR_VERIFICATION_CODE" /> */}
-
-          {/* Theme Color Meta Tags */}
           {viewport.themeColor.map(({ media, color }) => (
             <meta
               key={media}
@@ -100,7 +84,7 @@ export default function RootLayout({ children }) {
         >
           <Providers themeProps={{ attribute: "class", defaultTheme: "light" }}>
             <div className="relative mx-auto max-w-7xl min-h-screen flex flex-col gap-5">
-              {/* Navbar */}
+              {/* Navigation */}
               <NavbarComponent
                 categories={categories}
                 temuProducts={temuProduct}
@@ -117,19 +101,21 @@ export default function RootLayout({ children }) {
                 <FooterComponent />
               </footer>
 
-              {/* Floating Buttons */}
+              {/* Floating UI Components */}
               <div
                 className="fixed bottom-5 left-1/2 transform -translate-x-1/2 z-20"
                 role="button"
               >
                 <SpeedDial />
               </div>
+
               <div
                 aria-label="Cart Drawer"
                 className="fixed bottom-1/2 left-1 z-20 flex sm:hidden"
               >
                 <CartDrawer />
               </div>
+
               <div
                 aria-label="Theme Switcher"
                 className="fixed bottom-16 right-5 bg-gray-200 dark:bg-gray-700 p-2 z-20 rounded-md flex sm:hidden"
@@ -142,7 +128,7 @@ export default function RootLayout({ children }) {
             <CookiesAlert />
           </Providers>
 
-          {/* ✅ Google AdSense Script (must be in body for app directory) */}
+          {/* Google AdSense Script */}
           <Script
             async
             crossOrigin="anonymous"
@@ -151,7 +137,7 @@ export default function RootLayout({ children }) {
             strategy="afterInteractive"
           />
 
-          {/* Ionicons */}
+          {/* Ionicons Scripts */}
           <Script
             defer
             src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
@@ -171,4 +157,5 @@ export default function RootLayout({ children }) {
   );
 }
 
+// Revalidate every 60 seconds
 export const revalidate = 60;
