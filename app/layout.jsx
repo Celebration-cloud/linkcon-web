@@ -2,6 +2,7 @@ import "@/styles/globals.css";
 import clsx from "clsx";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Analytics } from "@vercel/analytics/next";
+import Script from "next/script";
 
 import { Providers } from "./providers";
 
@@ -11,11 +12,12 @@ import { NavbarComponent } from "@/components/navbar";
 import { FooterComponent } from "@/components/footerComponent";
 import { PaymentFooter } from "@/components/paymentFooter";
 import { SpeedDial } from "@/components/SpeedDial";
-import "primereact/resources/themes/lara-light-cyan/theme.css";
 import { ThemeSwitch } from "@/components/theme-switch";
 import { CartDrawer } from "@/components/CartDrawer";
-import { getTemuCategories, getTemuProduct } from "@/libs/dataAction";
 import CookiesAlert from "@/components/CookiesAlert";
+import { getTemuCategories, getTemuProduct } from "@/libs/dataAction";
+
+import "primereact/resources/themes/lara-light-cyan/theme.css";
 
 /**
  * Metadata configuration for the root layout.
@@ -43,16 +45,8 @@ export const viewport = {
 
 /**
  * RootLayout Component
- *
- * The main layout wrapper for the application. It wraps all pages with global providers,
- * layout elements like navbar/footer, and UI components like cart drawer and speed dial.
- *
- * @param {Object} props - Component props
- * @param {React.ReactNode} props.children - Nested page content
- * @returns {JSX.Element} Rendered layout
  */
 export default async function RootLayout({ children }) {
-  // Fetch categories and products server-side
   const temuCategories = await getTemuCategories();
   const categories = temuCategories.data;
 
@@ -69,7 +63,6 @@ export default async function RootLayout({ children }) {
             content="ca-pub-7517532434811402"
             name="google-adsense-account"
           />
-          <title>{metadata.title.default}</title>
           <link href={metadata.icons.icon} rel="icon" />
           <meta content={metadata.description} name="description" />
 
@@ -82,7 +75,17 @@ export default async function RootLayout({ children }) {
               name="theme-color"
             />
           ))}
+
+          {/* Google AdSense Script */}
+          <Script
+            async
+            crossOrigin="anonymous"
+            id="adsense-script"
+            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7517532434811402"
+            strategy="afterInteractive"
+          />
         </head>
+
         <body
           className={clsx(
             "min-h-screen font-sans antialiased bg-white text-gray-900 dark:bg-gray-900 dark:text-white",
@@ -91,21 +94,18 @@ export default async function RootLayout({ children }) {
         >
           <Providers themeProps={{ attribute: "class", defaultTheme: "light" }}>
             <div className="relative mx-auto max-w-7xl min-h-screen flex flex-col gap-5">
-              {/* Navigation Bar */}
+              {/* Navigation */}
               <NavbarComponent
                 categories={categories}
                 temuProducts={temuProduct}
               />
 
-              {/* Main Content Area */}
-              <main
-                className="container mx-auto max-w-7xl px-6 flex-grow"
-                role="main"
-              >
+              {/* Main Content */}
+              <main className="container mx-auto max-w-7xl px-6 flex-grow">
                 {children}
               </main>
 
-              {/* Footer Section */}
+              {/* Footer */}
               <footer className="w-full">
                 <PaymentFooter />
                 <FooterComponent />
@@ -134,25 +134,20 @@ export default async function RootLayout({ children }) {
               </div>
             </div>
 
-            {/* Cookie Consent Banner */}
+            {/* Cookie Consent */}
             <CookiesAlert />
           </Providers>
 
-          {/* Ionicons Script */}
-          <script
+          {/* Ionicons Scripts */}
+          <Script
             defer
             src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
             type="module"
           />
-          <script
+          <Script
             defer
             noModule
             src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
-          />
-          <script
-            async
-            crossOrigin="anonymous"
-            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7517532434811402"
           />
 
           {/* Vercel Analytics */}
